@@ -345,6 +345,10 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
 
         indexForwardSteps[currentIndexForwardSteps] = soundPlaying;
         currentIndexForwardSteps++;
+        if (currentIndexForwardSteps == shuffleForwardSteps)
+        {
+            currentIndexForwardSteps = 0; 
+        }
 
         //Plays sound. 
         audiosource.clip = footsteps[soundPlaying];
