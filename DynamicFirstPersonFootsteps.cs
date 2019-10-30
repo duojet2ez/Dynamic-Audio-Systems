@@ -210,7 +210,6 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
     {
         while (true)
         {
-            //audiosource.PlayOneShot(footsteps[0]); 
             CheckandPlaySoundForward();
             yield return new WaitForSeconds(footstepTiming);
         }
@@ -221,7 +220,7 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
     {
         while (true)
         {
-            audiosource.PlayOneShot(backwardsFootsteps[0]);
+            CheckandPlaySoundBackward();
             yield return new WaitForSeconds(footstepTiming);
         }
     }
@@ -230,7 +229,7 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
     {
         while (true)
         {
-            audiosource.PlayOneShot(sprintForwards[0]);
+            CheckandPlaySoundForwardSprint();
             yield return new WaitForSeconds(sprintFootstepTiming);
         }
     }
@@ -239,7 +238,7 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
     {
         while (true)
         {
-            audiosource.PlayOneShot(sprintBackwards[0]);
+            CheckandPlaySoundBackwardSprint(); 
             yield return new WaitForSeconds(sprintFootstepTiming);
         }
     }
@@ -248,7 +247,7 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
     {
         while (true)
         {
-            audiosource.PlayOneShot(sideStepLeft[0]);
+            CheckandPlaySoundSideLeft(); 
             yield return new WaitForSeconds(sideStepTiming);
         }
             
@@ -258,7 +257,7 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
     {
         while (true)
         {
-            audiosource.PlayOneShot(sideStepRight[0]);
+            CheckandPlaySoundSideRight(); 
             yield return new WaitForSeconds(sideStepTiming); 
         }
 
@@ -355,29 +354,150 @@ public class DynamicFirstPersonFootsteps : MonoBehaviour
         audiosource.Play();
     }
 
- /*   void CheckandPlaySoundForwardSprint()
+    void CheckandPlaySoundForwardSprint()
     {
+        int soundPlaying;
 
+        //The while loop cycles through the index checking for a previously played sound. If it finds one while loop starts again picking another random value. If not breaks from loop. 
+
+        while (true)
+        {
+            soundPlaying = randomGeneratorForwardSprint();
+            bool foundSoundPlaying = false;
+            for (int i = 0; i < shuffleForwardSprintSteps; i++)
+            {
+                if (indexForwardSprintSteps[i] == soundPlaying) { foundSoundPlaying = true; }
+            }
+            if (!foundSoundPlaying) { break; }
+        }
+
+        indexForwardSprintSteps[currentIndexForwardSprintSteps] = soundPlaying;
+        currentIndexForwardSprintSteps++;
+        if (currentIndexForwardSprintSteps == shuffleForwardSprintSteps)
+        {
+            currentIndexForwardSprintSteps = 0;
+        }
+
+        //Plays sound. 
+        audiosource.clip = sprintForwards[soundPlaying];
+        audiosource.Play();
     }
 
     void CheckandPlaySoundBackward()
     {
+        int soundPlaying;
+
+        //The while loop cycles through the index checking for a previously played sound. If it finds one while loop starts again picking another random value. If not breaks from loop. 
+
+        while (true)
+        {
+            soundPlaying = randomGeneratorBackward();
+            bool foundSoundPlaying = false;
+            for (int i = 0; i < shuffleBackwardSteps; i++)
+            {
+                if (indexBackwardSteps[i] == soundPlaying) { foundSoundPlaying = true; }
+            }
+            if (!foundSoundPlaying) { break; }
+        }
+
+        indexBackwardSteps[currentIndexBackwardSteps] = soundPlaying;
+        currentIndexBackwardSteps++;
+        if (currentIndexBackwardSteps == shuffleBackwardSteps)
+        {
+            currentIndexBackwardSteps = 0;
+        }
+
+        //Plays sound. 
+        audiosource.clip = backwardsFootsteps[soundPlaying];
+        audiosource.Play();
 
     }
 
     void CheckandPlaySoundBackwardSprint()
     {
+        int soundPlaying;
 
+        //The while loop cycles through the index checking for a previously played sound. If it finds one while loop starts again picking another random value. If not breaks from loop. 
+
+        while (true)
+        {
+            soundPlaying = randomGeneratorBackwardSprint();
+            bool foundSoundPlaying = false;
+            for (int i = 0; i < shuffleBackwardSprintSteps; i++)
+            {
+                if (indexBackwardSprintSteps[i] == soundPlaying) { foundSoundPlaying = true; }
+            }
+            if (!foundSoundPlaying) { break; }
+        }
+
+        indexBackwardSprintSteps[currentIndexBackwardSprintSteps] = soundPlaying;
+        currentIndexBackwardSprintSteps++;
+        if (currentIndexBackwardSprintSteps == shuffleBackwardSprintSteps)
+        {
+            currentIndexBackwardSprintSteps = 0;
+        }
+
+        //Plays sound. 
+        audiosource.clip = sprintBackwards[soundPlaying];
+        audiosource.Play();
     }
 
     void CheckandPlaySoundSideLeft()
     {
+        int soundPlaying;
 
+        //The while loop cycles through the index checking for a previously played sound. If it finds one while loop starts again picking another random value. If not breaks from loop. 
+
+        while (true)
+        {
+            soundPlaying = randomGeneratorSideLeft();
+            bool foundSoundPlaying = false;
+            for (int i = 0; i < shuffleSideStepLeft; i++)
+            {
+                if (indexSideStepLeft[i] == soundPlaying) { foundSoundPlaying = true; }
+            }
+            if (!foundSoundPlaying) { break; }
+        }
+
+        indexSideStepLeft[currentIndexSideStepLeft] = soundPlaying;
+        currentIndexSideStepLeft++;
+        if (currentIndexSideStepLeft == shuffleSideStepLeft)
+        {
+            currentIndexSideStepLeft = 0;
+        }
+
+        //Plays sound. 
+        audiosource.clip = sideStepLeft[soundPlaying];
+        audiosource.Play();
     }
 
     void CheckandPlaySoundSideRight()
     {
+        int soundPlaying;
 
-    }*/
+        //The while loop cycles through the index checking for a previously played sound. If it finds one while loop starts again picking another random value. If not breaks from loop. 
+
+        while (true)
+        {
+            soundPlaying = randomGeneratorSideRight();
+            bool foundSoundPlaying = false;
+            for (int i = 0; i < shuffleSideStepRight; i++)
+            {
+                if (indexSideStepRight[i] == soundPlaying) { foundSoundPlaying = true; }
+            }
+            if (!foundSoundPlaying) { break; }
+        }
+
+        indexSideStepRight[currentIndexSideStepRight] = soundPlaying;
+        currentIndexSideStepRight++;
+        if (currentIndexSideStepRight == shuffleSideStepRight)
+        {
+            currentIndexSideStepRight = 0;
+        }
+
+        //Plays sound. 
+        audiosource.clip = sideStepRight[soundPlaying];
+        audiosource.Play();
+    }
 
 }
